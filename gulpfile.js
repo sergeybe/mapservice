@@ -8,7 +8,6 @@ var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var gutil = require('gulp-util');
 var rjs = require('requirejs');
-var uglify = require('gulp-uglify');
 var karma = require('gulp-karma');
 
 
@@ -50,7 +49,7 @@ gulp.task('js', function(cb) {
     name: '../bower_components/almond/almond',
     generateSourceMaps: true,
     preserveLicenseComments: false,
-    optimize: 'none'
+    optimize: 'uglify2'
   },
   function(buildResponse){
     console.log('build response', buildResponse);
@@ -98,6 +97,7 @@ gulp.task('watch', function() {
   liveReloadCSS()
   liveReloadJS()
   gulp.watch('scss/*.scss', ['scss'])
+  gulp.watch('src/**/*.js', ['js'])
 });
 
 /* Tests */ 
