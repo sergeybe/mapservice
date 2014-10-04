@@ -1,6 +1,7 @@
 var pkg = require('./package.json');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var csso = require('gulp-csso');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
 var jshint = require('gulp-jshint');
@@ -32,6 +33,7 @@ gulp.task('scss', function () {
       paths: ['./scss/'],
       filename: 'app.scss'
     }))
+    .pipe(csso())
     .pipe(gulp.dest('./static/'));
 });
 
