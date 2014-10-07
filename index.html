@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <title>Map</title>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -10,7 +11,52 @@
     </head>
     <body>
         <div id="app">
+            <div id="wrap">
+                <div id="sidebar">
+                    <h1>Картографический сервис</h1>
+
+                    <ul id="sidebar-tabs" class="nav-tabs">
+                        <li class="active"><a href="#categories">Категории</a></li>
+                        <li><a href="#categories-search">Поиск</a></li>
+                    </ul>
+
+                    <div id="category">
+                    </div>
+
+                    <div id="search">
+                    </div>
+
+                    <div class="footer">
+                    </div>
+                </div>
+
+                <div id="main">
+                    <ul class="nav-tabs">
+                        <li><a href="#map">Карта</a></li>
+                        <li class="active"><a href="#list">Список</a></li>
+                    </ul>
+
+                    <div id="content">
+                        <ul class="paginator">
+                            <li>&lt;</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li class="active">3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>&gt;</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer">
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="hack">
+        </div>
+
         <script src="bower_components/requirejs/require.js" data-main="src/app"></script>
     </body>
 </html>
