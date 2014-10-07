@@ -10,7 +10,6 @@ var gutil = require('gulp-util');
 var rjs = require('requirejs');
 var karma = require('gulp-karma');
 
-
 /* Linting */
 
 gulp.task('lint', function() {
@@ -32,6 +31,7 @@ gulp.task('scss', function () {
       paths: ['./scss/'],
       filename: 'app.scss'
     }))
+    .on('error', swallowError)
     .pipe(csso())
     .pipe(gulp.dest('./static/'));
 });
@@ -82,6 +82,11 @@ var liveReloadJS = function() {
   });
 };
 
+var swallowError = function(error) {
+  console.log(error.toString());
+  this.emit('end');
+}
+
 var serveStatic = require('serve-static');
 var connect = require('connect');
 var serverAddress = 'http://' + pkg.gulp.server.host + ':' + pkg.gulp.server.port + '/';
@@ -94,10 +99,12 @@ gulp.task('server', function() {
 });
 
 gulp.task('watch', function() {
-  liveReloadCSS()
-  liveReloadJS()
+  liveReloadCSS();
+  liveReloadJS();
   gulp.watch('scss/*.scss', ['scss'])
+    .on('error', swallowError);
   gulp.watch('src/**/*.js', ['js'])
+    .on('error', swallowError);
 });
 
 /* Tests */ 
