@@ -1,6 +1,7 @@
 var pkg = require('./package.json');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 var csso = require('gulp-csso');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
@@ -30,6 +31,10 @@ gulp.task('scss', function () {
     .pipe(sass({
       paths: ['./scss/'],
       filename: 'app.scss'
+    }))
+    .pipe(autoprefixer({
+      browsers: ['> 1%'],
+      cascade: false
     }))
     .on('error', swallowError)
     .pipe(csso())
