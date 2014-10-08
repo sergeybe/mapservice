@@ -1,0 +1,72 @@
+[
+    {
+	"name": "Туристические стоянки",
+	"items": [
+	    {
+		"name": "Name of object 1",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    },
+	    {
+		"name": "Name of object 2",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    },
+	    {
+		"name": "Name of object 3",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    }
+	]
+    },
+    {
+	"name": "Места для стоянок",
+	"items": [
+	    {
+		"name": "Name of object 1",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    },
+	    {
+		"name": "Name of object 2",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    },
+	    {
+		"name": "Name of object 3",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    },
+	    {
+		"name": "Name of object 4",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    },
+	    {
+		"name": "Name of object 5",
+		"address": "Address",
+        	"lon": 0,
+                "lat": 0
+	    }
+	]
+    },
+    {
+	"name": "Достопримечательности",
+	"items": [
+	]
+    },
+    {
+	"name": "Магазины",
+	"items": [
+	]
+    }
+]
+
+    

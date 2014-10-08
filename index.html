@@ -57,6 +57,20 @@
         <div class="hack">
         </div>
 
+	<script type="text/html" id="category-item-template">
+        <span><%= name %></span>
+        <ul class="coord-list"></ul>
+	</script>
+
+	<script type="text/html" id="coord-item-template">
+	     <%= name %>
+	</script>
+
+	<script type="text/html" id="category-list-template">
+	    <%= name %>
+	    <ul></ul>
+	</script>
+
         <script src="bower_components/requirejs/require.js" data-main="src/app"></script>
     </body>
 </html>

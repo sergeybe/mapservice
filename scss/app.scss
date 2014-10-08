@@ -150,3 +150,45 @@ ul.paginator {
     }
   }
 }
+
+ul.category-list {
+  padding-left: 10px;
+  list-style: none;
+  user-select: none;
+
+  > li.category-item {
+    cursor: pointer;
+
+    &:before {
+      content: '\25b6';
+    }
+
+    &.collapsed {
+
+      &:before {
+        content: '\25b6';
+        padding-right: 3px;
+      }
+
+      & > ul {
+        display: none;
+      }
+    }
+
+    &.uncollapsed {
+
+      &:before {
+        content: '\25bc';
+      }
+
+      & > ul {
+        display: block;
+      }
+    }
+  }
+
+  .coord-list {
+    padding-left: 15px;
+    list-style: none;
+  }
+}
