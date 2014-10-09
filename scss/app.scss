@@ -287,3 +287,56 @@ ul.category-list {
     list-style: none;
   }
 }
+
+div.shadow {
+  display: block;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  outline: 0;
+  opacity: .5;
+  background-color: #000;
+}
+
+div.dialog {
+  position: relative;
+  background-clip: padding-box;
+  background-color: #fff;
+  outline: 0;
+  z-index: 2000;
+  width: 400px;
+  margin: 50px auto;
+
+  & > div.dialog-content {
+    border: 1px solid #000;
+    position: relative;
+    outline: 0;
+
+    & > div.dialog-header {
+      min-height: 20px;
+      padding: 5px;
+      border-bottom: 1px solid #eee;
+
+      & > .dialog-title {
+        float: left;
+      }
+
+      & > span.close {
+        float: right;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+        @include clearfix;
+      }
+    }
+
+    & > div.dialog-body {
+      position: relative;
+      padding: 10px;
+    }
+  }
+}

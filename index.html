@@ -63,6 +63,7 @@
         <div class="hack">
         </div>
 
+
         <script type="text/html" id="category-item-template">
             <%= name %>
             <ul class="coord-list"></ul>
@@ -86,7 +87,7 @@
             <ul id="result"></ul>
         </script>
 
-	<script type="text/html" id="coord-row-template">
+        <script type="text/html" id="coord-row-template">
             <td><%= name %></td>
             <td><%= address %></td>
             <td><%= lat %></td>
@@ -97,7 +98,7 @@
                 <a href="#" class="edit">Редактировать</a>
                 <a href="#" class="delete">Удалить</a>
             </td>
-	</script>
+        </script>
 
         <script type="text/html" id="coord-table-template">
             <thead>
@@ -114,6 +115,22 @@
             <tbody>
             </tbody>
         </script>
+
+        <script type="text/html" id="dialog-template">
+            <div class="shadow">
+            </div>
+            <div class="dialog">
+                <div class="dialog-content">
+                    <div class="dialog-header">
+                        <h4 class="dialog-title">Заголовок</h4>
+                        <span class="close">&times;</span>
+                    </div>
+                    <div class="dialog-body">
+                        <p>Тело окна</p>
+                    </div>
+                </div>
+            </div>
+        </dialog>
 
         <script type="text/html" id="sidebar-tabs-template">
             <li class="active"><a href="#categories">Категории</a></li>
