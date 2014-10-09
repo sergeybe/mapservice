@@ -76,7 +76,8 @@ function(Backbone, Marionette, $, _) {
       console.log('init CategoryCollection');
     },
 
-    searchStringLike: function(str, collection) {
+    getCoordLikes: function(str) {
+      var tmp = [];
       if (str) {
         var pattern = new RegExp(str, 'i');
 
@@ -84,12 +85,12 @@ function(Backbone, Marionette, $, _) {
           category.items.each(function(coord) {
             var name = coord.get('name');
             if (pattern.test(name)) {
-              collection.add(coord);
+              tmp.push(coord);
             }
           });
         });
       }
-      return collection;
+      return tmp;
     }
   });
 
@@ -178,8 +179,7 @@ function(Backbone, Marionette, $, _) {
       this.text = this.ui.input.val();
       console.log(this.text);
 
-      this.collection.reset();
-      this.categoryCollection.searchStringLike(this.text, this.collection);
+      this.collection.reset(this.categoryCollection.getCoordLikes(this.text));
       console.log(this.collection);
     }
   });
