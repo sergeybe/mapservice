@@ -37,6 +37,12 @@
                     </ul>
 
                     <div id="content">
+                        <div class="panel">
+                          <a href="#">Новая категория</a>
+                          <a href="#">Новый объект</a>
+                        </div>
+                        <div id="list">
+                        </div>
                         <ul class="paginator">
                             <li>&lt;</li>
                             <li>1</li>
@@ -78,6 +84,35 @@
             </form>
             <h3>Результаты</h3>
             <ul id="result"></ul>
+        </script>
+
+	<script type="text/html" id="coord-row-template">
+            <td><%= name %></td>
+            <td><%= address %></td>
+            <td><%= lat %></td>
+            <td><%= lon %></td>
+            <td></td>
+            <td><a href="#">На карте</a></td>
+            <td>
+                <a href="#" class="edit">Редактировать</a>
+                <a href="#" class="delete">Удалить</a>
+            </td>
+	</script>
+
+        <script type="text/html" id="coord-table-template">
+            <thead>
+                <tr>
+                    <th>Имя объекта</th>
+                    <th>Адрес объекта</th>
+                    <th>Широта</th>
+                    <th>Долгота</th>
+                    <th>Категория</th>
+                    <th>Карта</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </script>
 
         <script type="text/html" id="sidebar-tabs-template">

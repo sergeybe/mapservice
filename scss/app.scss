@@ -15,6 +15,7 @@
 
     #sidebar {
       display: table-cell;
+      vertical-align: top;
       width: $sidebar-width;
       border-right: 1px solid #000;
       padding-bottom: 1000em;
@@ -93,6 +94,7 @@
 
     #main {
       display: table-cell;
+      vertical-align: top;
       padding-left: 10px;
       padding-right: 10px;
 
@@ -103,6 +105,47 @@
         border-right: 1px solid #000;
         padding-bottom: 1000em;
         margin-bottom: -1000em;
+
+        .panel {
+          float: right;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          > a {
+            float: right;
+            padding-left: 10px;
+          }
+        }
+
+        #list {
+          .coord-table {
+            width: 100%;
+            border: 1px solid #aaa;
+            & thead {
+              & tr {
+                & th {
+                  background-color: #ddd;
+                  text-align: left;
+                  border-right: 1px solid #777;
+                  padding-left: 10px;
+                }
+              }
+            }
+
+            & tbody {
+              & tr {
+                &:nth-child(odd) {
+                  background-color: #eee;
+                }
+
+                & td {
+                  text-align: left;
+                  border-right: 1px solid #777;
+                  padding-left: 10px;
+                }
+              }
+            }
+          }
+        }
 
         > .paginator {
           position: fixed;

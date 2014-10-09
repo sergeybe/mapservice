@@ -136,6 +136,9 @@ function(Backbone, Marionette, $, _) {
       e.preventDefault();
       console.log('CategoryView::onCategoryItemClick');
       this.$el.toggleClass('collapsed').toggleClass('uncollapsed');
+
+      this.trigger('category:clicked');
+
       return false;
     }
 
@@ -167,7 +170,6 @@ function(Backbone, Marionette, $, _) {
 
     initialize: function(options) {
       this.categoryCollection = options.categoryCollection;
-      this.collection = new CoordCollection();
 
       // I guess it must be in behaviors. Let's do it later.
       this.onDebounceChanged = _.debounce(function() {
@@ -184,10 +186,27 @@ function(Backbone, Marionette, $, _) {
     }
   });
 
+  var CoordRowView = Marionette.ItemView.extend({
+    tagName: 'tr',
+    className: 'coord-row-item',
+    template: '#coord-row-template'
+  });
+
+  var CoordTableView = Marionette.CompositeView.extend({
+    tagName: 'table',
+    className: 'coord-table',
+    template: '#coord-table-template',
+    childView: CoordRowView,
+    childViewContainer: 'tbody',
+
+    initialize: function(options) {
+    }
+  });
+
   var App = Marionette.Application.extend({
     initialize: function(options) {
     }
-  })
+  });
 
   app = new App({container: '#app'});
 
@@ -204,8 +223,28 @@ function(Backbone, Marionette, $, _) {
     var categoryCollection = new CategoryCollection();
     categoryCollection.fetch();
 
-    app.category.show(new CategoryListView({collection: categoryCollection}));
-    app.search.show(new SearchView({categoryCollection: categoryCollection}));
+    var coordCollection = new CoordCollection();
+
+    var categoryListView = new CategoryListView({
+      collection: categoryCollection
+    });
+
+    var searchView = new SearchView({
+      collection: coordCollection,
+      categoryCollection: categoryCollection
+    });
+
+    var coordTableView = new CoordTableView({
+      collection: coordCollection
+    });
+
+    app.category.show(categoryListView);
+    app.search.show(searchView);
+    app.list.show(coordTableView);
+
+    categoryListView.on('childview:category:clicked', function(view) {
+      coordTableView.collection.reset(view.model.items.models);
+    });
 
     Backbone.history.start();
   });
