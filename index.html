@@ -57,19 +57,33 @@
         <div class="hack">
         </div>
 
-	<script type="text/html" id="category-item-template">
-        <span><%= name %></span>
-        <ul class="coord-list"></ul>
-	</script>
+        <script type="text/html" id="category-item-template">
+            <%= name %>
+            <ul class="coord-list"></ul>
+        </script>
 
-	<script type="text/html" id="coord-item-template">
-	     <%= name %>
-	</script>
+        <script type="text/html" id="coord-item-template">
+            <a href="#"><%= name %></a>
+        </script>
 
-	<script type="text/html" id="category-list-template">
-	    <%= name %>
-	    <ul></ul>
-	</script>
+        <script type="text/html" id="category-list-template">
+            <%= name %>
+            <ul></ul>
+        </script>
+
+        <script type="text/html" id="search-template">
+            <form>
+            <label for="search-field"></label>
+            <input type="text" plaсeholder="Поиск" value="" id="search-field">
+            </form>
+            <h3>Результаты</h3>
+            <ul id="result"></ul>
+        </script>
+
+        <script type="text/html" id="sidebar-tabs-template">
+            <li class="active"><a href="#categories">Категории</a></li>
+            <li><a href="#categories-search">Поиск</a></li>
+        </script>
 
         <script src="bower_components/requirejs/require.js" data-main="src/app"></script>
     </body>

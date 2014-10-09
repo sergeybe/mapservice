@@ -56,6 +56,7 @@ function(Backbone, Marionette, $, _) {
         items: new CoordCollection()
       };
     },
+
     initialize: function() {
       console.log('init CategoryModel');
       var items = this.get('items');
@@ -70,9 +71,26 @@ function(Backbone, Marionette, $, _) {
   var CategoryCollection = Backbone.Collection.extend({
     model: CategoryModel,
     url: '/tests/data.json',
+
     initialize: function() {
       console.log('init CategoryCollection');
     },
+
+    searchStringLike: function(str, collection) {
+      if (str) {
+        var pattern = new RegExp(str, 'i');
+
+        this.each(function(category) {
+          category.items.each(function(coord) {
+            var name = coord.get('name');
+            if (pattern.test(name)) {
+              collection.add(coord);
+            }
+          });
+        });
+      }
+      return collection;
+    }
   });
 
   /* Views */
@@ -129,20 +147,52 @@ function(Backbone, Marionette, $, _) {
 
     initialize: function() {
       console.log('init CategoryListView');
-      this.collection = new CategoryCollection();
-      this.collection.fetch();
+    }
+  });
+
+  var SearchView = Marionette.CompositeView.extend({
+    template: '#search-template',
+    childViewContainer: 'ul#result',
+    childView: CoordView,
+    text: '',
+
+    ui: {
+      'input': 'input[type="text"]'
+    },
+
+    events: {
+      'keyup @ui.input': 'onDebounceChanged'
+    },
+
+    initialize: function(options) {
+      this.categoryCollection = options.categoryCollection;
+      this.collection = new CoordCollection();
+
+      // I guess it must be in behaviors. Let's do it later.
+      this.onDebounceChanged = _.debounce(function() {
+        this.onChanged();
+      }, 500).bind(this);
+    },
+
+    onChanged: function() {
+      this.text = this.ui.input.val();
+      console.log(this.text);
+
+      this.collection.reset();
+      this.categoryCollection.searchStringLike(this.text, this.collection);
+      console.log(this.collection);
     }
   });
 
   var App = Marionette.Application.extend({
     initialize: function(options) {
-      console.log(options.container);
     }
-  });
+  })
 
   app = new App({container: '#app'});
 
   app.addRegions({
+    sidebar: '#sidebar-tabs',
     category: '#category',
     search: '#search',
     map: '#map',
@@ -150,7 +200,12 @@ function(Backbone, Marionette, $, _) {
   });
 
   app.addInitializer(function(options) {
-    app.category.show(new CategoryListView());
+
+    var categoryCollection = new CategoryCollection();
+    categoryCollection.fetch();
+
+    app.category.show(new CategoryListView({collection: categoryCollection}));
+    app.search.show(new SearchView({categoryCollection: categoryCollection}));
 
     Backbone.history.start();
   });

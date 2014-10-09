@@ -41,6 +41,9 @@ table {
 td,
 th,
 h1,
+h2,
+h3,
+h4,
 ul,
 li {
   padding: 0;
@@ -49,4 +52,17 @@ li {
 
 form {
   height: 100%;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+*:focus {
+  outline: 0;
+}
+
+* {
+  line-height: $line-height-base;
 }

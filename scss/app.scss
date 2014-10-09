@@ -37,6 +37,58 @@
       > .footer {
         width: 300px;
       }
+
+      #search {
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        margin-bottom: -10000px;
+        padding-bottom: 10000px;
+
+        label:before {
+          content: '\1f50d';
+          font-family: 'Segoe UI Symbol';
+          display: block;
+          padding: 0;
+          margin: 0;
+          position: relative;
+          top: 22px;
+          left: 15px;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        input[type="text"] {
+          margin-left: 10px;
+          margin-right: 10px;
+          padding-left: 18px;
+          padding-right: 7px;
+          padding-top: 3px;
+          padding-bottom: 3px;
+          border-radius: 11px;
+          border: 1px solid #000;
+          display: block;
+          -webkit-font-smoothing: antialiased;
+
+          &:focus {
+            border: 1px solid #000;
+            outline: 0;
+          }
+        }
+
+        h3 {
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        ul#result {
+          list-style: none;
+
+          > li {
+            margin-left: 10px;
+            margin-right: 10px;
+          }
+        }
+      }
     }
 
     #main {
