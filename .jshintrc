@@ -21,6 +21,8 @@
     "__dirname": true,
     "module": true,
     "process": true,
-    "exports": true
+    "exports": true,
+    "Backbone": true,
+    "Marionette": true
   }
 }
