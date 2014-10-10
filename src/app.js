@@ -6,7 +6,8 @@ require.config({
     jquery: '../bower_components/jquery/dist/jquery',
     backbone: '../bower_components/backbone/backbone',
     marionette: '../bower_components/marionette/lib/backbone.marionette',
-    leaflet: '../bower_components/leaflet/dist/leaflet-src.js'
+    leaflet: '../bower_components/leaflet/dist/leaflet-src.js',
+    text: '../bower_components/requirejs-text/text'
   },
   shim: {
     backbone: {

@@ -1,7 +1,12 @@
-define(['marionette', 'views/coord'], function(Marionette, CoordView) {
+define([
+  'marionette',
+  'views/coord',
+  'text!templates/search.html'
+],
+function(Marionette, CoordView, template) {
 
   return Marionette.CompositeView.extend({
-    template: '#search-template',
+    template: _.template(template),
     childViewContainer: 'ul#result',
     childView: CoordView,
     text: '',

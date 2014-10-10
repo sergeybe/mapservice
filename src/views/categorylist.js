@@ -1,4 +1,8 @@
-define(['marionette', 'views/category'], function(Marionette, CategoryView) {
+define([
+  'marionette',
+  'views/category'
+],
+function(Marionette, CategoryView) {
 
   return Marionette.CollectionView.extend({
     tagName: 'ul',

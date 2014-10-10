@@ -1,9 +1,14 @@
-define(['marionette', 'views/coordrow'], function(Marionette, CoordRowView) {
+define([
+  'marionette',
+  'views/coordrow',
+  'text!templates/coordtable.html'
+],
+function(Marionette, CoordRowView, template) {
 
   return Marionette.CompositeView.extend({
     tagName: 'table',
     className: 'coord-table',
-    template: '#coord-table-template',
+    template: _.template(template),
     childView: CoordRowView,
     childViewContainer: 'tbody',
 

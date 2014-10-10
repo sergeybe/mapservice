@@ -1,7 +1,11 @@
-define(['marionette'], function(Marionette) {
+define([
+  'marionette',
+  'text!templates/coord.html'
+],
+function(Marionette, template) {
 
   return Marionette.ItemView.extend({
-    template: '#coord-item-template',
+    template: _.template(template),
     tagName: 'li',
     className: 'coord-item',
 

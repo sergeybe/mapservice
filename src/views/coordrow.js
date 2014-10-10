@@ -1,9 +1,13 @@
-define(['marionette'], function(Marionette) {
+define([
+  'marionette',
+  'text!templates/coordrow.html'
+],
+function(Marionette, template) {
 
   return Marionette.ItemView.extend({
     tagName: 'tr',
     className: 'coord-row-item',
-    template: '#coord-row-template'
+    template: _.template(template)
   });
 
 });

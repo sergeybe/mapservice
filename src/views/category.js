@@ -1,9 +1,14 @@
-define(['marionette', 'views/coord'], function(Marionette, CoordView) {
+define([
+  'marionette',
+  'views/coord',
+  'text!templates/category.html'
+],
+function(Marionette, CoordView, template) {
 
   return Marionette.CompositeView.extend({
     tagName: 'li',
     className: 'category-item collapsed',
-    template: '#category-item-template',
+    template: _.template(template),
 
     childView: CoordView,
     childViewContainer: 'ul',
