@@ -32,7 +32,10 @@ requirejs([
   'collections/coord',
   'views/categorylist',
   'views/search',
-  'views/coordtable'
+  'views/map',
+  'views/coordtable',
+  'views/tabs-sidebar',
+  'views/tabs-content',
 ],
 function(
   Backbone,
@@ -41,17 +44,21 @@ function(
   CoordCollection,
   CategoryListView,
   SearchView,
-  CoordTableView
+  MapView,
+  CoordTableView,
+  SidebarTabsView,
+  ContentTabsView
 ) {
 
   var app = new Application({container: '#app'});
 
   app.addRegions({
-    sidebar: '#sidebar-tabs',
-    category: '#category',
-    search: '#search',
-    map: '#map',
-    list: '#list'
+    sidebarTabs: '#sidebar-tabs',
+    contentTabs: '#content-tabs',
+    categoryPane: '#category-pane',
+    searchPane: '#search-pane',
+    mapPane: '#map-pane',
+    tablePane: '#table-pane'
   });
 
   app.addInitializer(function() {
@@ -70,16 +77,41 @@ function(
       categoryCollection: categoryCollection
     });
 
+    var mapView = new MapView();
+
     var coordTableView = new CoordTableView({
       collection: coordCollection
     });
 
-    app.category.show(categoryListView);
-    app.search.show(searchView);
-    app.list.show(coordTableView);
+    /* Tabs */
+    var sidebarTabsView = new SidebarTabsView();
+    var contentTabsView = new ContentTabsView();
 
-    categoryListView.on('childview:category:clicked', function(view) {
-      coordTableView.collection.reset(view.model.items.models);
+    /* Pane for tabs */
+    app.categoryPane.show(categoryListView);
+    app.searchPane.show(searchView);
+    app.mapPane.show(mapView);
+    app.tablePane.show(coordTableView);
+
+    app.sidebarTabs.show(sidebarTabsView);
+    app.contentTabs.show(contentTabsView);
+
+    categoryListView.on('childview:category:clicked', function(args) {
+      coordTableView.collection.reset(args.model.items.models);
+    });
+
+    sidebarTabsView.on('sidebar-tabs:clicked', function(args) {
+      console.log('Category click');
+      // Hack: Because we have only two tabs
+      args.view.$el.find('li').toggleClass('active');
+      $('#category-pane, #search-pane').toggle();
+    });
+
+    contentTabsView.on('sidebar-tabs:clicked', function(args) {
+      console.log('Category click');
+      // Hack: Because we have only two tabs
+      args.view.$el.find('li').toggleClass('active');
+      $('#map-pane, #table-pane').toggle();
     });
 
     Backbone.history.start();

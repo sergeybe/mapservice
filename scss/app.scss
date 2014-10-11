@@ -25,7 +25,7 @@
 
       > h1 {}
 
-      #category {
+      #category-pane {
         border-left: 1px solid #000;
         border-right: 1px solid #000;
         margin-bottom: -10000px;
@@ -39,11 +39,12 @@
         width: 300px;
       }
 
-      #search {
+      #search-pane {
         border-left: 1px solid #000;
         border-right: 1px solid #000;
         margin-bottom: -10000px;
         padding-bottom: 10000px;
+        display: none;
 
         label:before {
           content: '\1f50d';
@@ -106,17 +107,22 @@
         padding-bottom: 1000em;
         margin-bottom: -1000em;
 
-        .panel {
-          float: right;
-          padding-top: 5px;
-          padding-bottom: 5px;
-          > a {
-            float: right;
-            padding-left: 10px;
-          }
+        #map-pane {
         }
 
-        #list {
+        #table-pane {
+          display: none;
+
+          .panel {
+            float: right;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            > a {
+              float: right;
+              padding-left: 10px;
+            }
+          }
+
           .coord-table {
             width: 100%;
             border: 1px solid #aaa;
