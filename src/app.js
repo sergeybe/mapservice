@@ -6,7 +6,7 @@ require.config({
     jquery: '../bower_components/jquery/dist/jquery',
     backbone: '../bower_components/backbone/backbone',
     marionette: '../bower_components/marionette/lib/backbone.marionette',
-    leaflet: '../bower_components/leaflet/dist/leaflet-src.js',
+    leaflet: '../bower_components/leaflet/dist/leaflet-src',
     text: '../bower_components/requirejs-text/text'
   },
   shim: {
@@ -50,7 +50,7 @@ function(
   ContentTabsView
 ) {
 
-  var app = new Application({container: '#app'});
+  app = new Application({container: '#app'});
 
   app.addRegions({
     sidebarTabs: '#sidebar-tabs',
@@ -97,6 +97,8 @@ function(
     app.searchPane.show(searchView);
     app.mapPane.show(mapView);
     app.tablePane.show(coordTableView);
+
+    app.mapPane.currentView.map.invalidateSize(false);
 
     /* Events */
 

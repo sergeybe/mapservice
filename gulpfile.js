@@ -3,13 +3,20 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var csso = require('gulp-csso');
+var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
+var rename =  require('gulp-rename');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var gutil = require('gulp-util');
 var rjs = require('requirejs');
 var karma = require('gulp-karma');
+
+var swallowError = function(error) {
+  console.log(error.toString());
+  this.emit('end');
+};
 
 /* Linting */
 
@@ -19,24 +26,30 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('jscs', function () {
+gulp.task('jscs', function() {
   return gulp.src(['./src/**/*.js'])
     .pipe(jscs());
 });
 
 /* Resources */
 
-gulp.task('scss', function () {
-  gulp.src('./scss/app.scss')
+gulp.task('scss', function() {
+  gulp.src([
+    './scss/app.scss',
+    './bower_components/leaflet/dist/leaflet.css'
+  ])
     .pipe(sass({
-      paths: ['./scss/'],
-      filename: 'app.scss'
-    }))
+      style: 'compressed',
+      errLogToConsole: true
+    }).on('error', gutil.log))
+    .pipe(concat('app.css'))
     .pipe(autoprefixer({
       browsers: ['> 1%'],
       cascade: false
     }))
     .on('error', swallowError)
+    .pipe(gulp.dest('./static/'))
+    .pipe(rename({suffix: '.min'}))
     .pipe(csso())
     .pipe(gulp.dest('./static/'));
 });
@@ -56,7 +69,7 @@ gulp.task('js', function(cb) {
     preserveLicenseComments: false,
     optimize: 'uglify2'
   },
-  function(buildResponse){
+  function(buildResponse) {
     console.log('build response', buildResponse);
     cb();
   });
@@ -69,28 +82,23 @@ gulp.task('build', ['scss', 'js']);
 var liveReloadSCSS = function() {
   var server = livereload(32882);
   gulp.watch('./scss/*.scss', function(evt) {
-      server.changed(evt.path);
+    server.changed(evt.path);
   });
 };
 
 var liveReloadCSS = function() {
   var server = livereload(32882);
   gulp.watch('./static/app.css', function(evt) {
-      server.changed(evt.path);
+    server.changed(evt.path);
   });
 };
 
 var liveReloadJS = function() {
   var javascriptServer = livereload(32883);
   gulp.watch(['./src/**'], function(evt) {
-      javascriptServer.changed(evt.path);
+    javascriptServer.changed(evt.path);
   });
 };
-
-var swallowError = function(error) {
-  console.log(error.toString());
-  this.emit('end');
-}
 
 var serveStatic = require('serve-static');
 var connect = require('connect');
@@ -112,7 +120,7 @@ gulp.task('watch', function() {
     .on('error', swallowError);
 });
 
-/* Tests */ 
+/* Tests */
 
 gulp.task('test', ['build'], function() {
   return gulp.src(['undefined.js'])
@@ -125,5 +133,5 @@ gulp.task('test', ['build'], function() {
       throw err;
     });
 });
- 
+
 gulp.task('default', ['build', 'watch', 'server']);

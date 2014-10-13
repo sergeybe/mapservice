@@ -12,17 +12,18 @@ function(Marionette) {
 
     initialize: function() {
       $(window).on('resize', _.debounce(
-        this.onResize.bind(this),
+        this.resize.bind(this),
         this.options.debonceTime)
       );
     },
 
-    onResize: function() {
+    resize: function() {
+      this.triggerMethod('resize', this);
       this.triggerMethod('show', this);
     },
 
     onShow: function() {
-      console.log('Fillable::onShow');
+      // console.log('Fillable::onShow');
       var windowHeight = window.innerHeight;
       var wrapperHeight = $(this.options.wrapper).height();
       var height =  this.$el.height();
