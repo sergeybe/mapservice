@@ -1,15 +1,23 @@
 define([
   'marionette',
   'views/coord',
+  'behaviors/fillable',
   'text!templates/search.html'
 ],
-function(Marionette, CoordView, template) {
+function(Marionette, CoordView, Fillable, template) {
 
   return Marionette.CompositeView.extend({
     template: _.template(template),
     childViewContainer: 'ul#result',
     childView: CoordView,
     text: '',
+
+    behaviors: {
+      Fillable: {
+        behaviorClass: Fillable,
+        wrapper: '#sidebar > div.wrapper'
+      }
+    },
 
     ui: {
       'input': 'input[type="text"]'
@@ -26,14 +34,13 @@ function(Marionette, CoordView, template) {
       this.onDebounceChanged = _.debounce(function() {
         this.onChanged();
       }, 500).bind(this);
+
     },
 
     onChanged: function() {
       this.text = this.ui.input.val();
-      console.log(this.text);
 
       this.collection.reset(this.categoryCollection.getCoordLikes(this.text));
-      console.log(this.collection);
     }
   });
 

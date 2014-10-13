@@ -9,7 +9,7 @@ function(Marionette, template) {
     className: 'nav-tabs',
     template: _.template(template),
     triggers: {
-      'click li:not(.active) > a': 'sidebar-tabs:clicked',
+      'click li:not(.active) > a': 'content-tabs:clicked',
     }
   });
 

@@ -63,11 +63,21 @@ function(
 
   app.addInitializer(function() {
 
+    /* Views of tabs */
+    var sidebarTabsView = new SidebarTabsView();
+    var contentTabsView = new ContentTabsView();
+
+    /* Show pane for tabs */
+    app.sidebarTabs.show(sidebarTabsView);
+    app.contentTabs.show(contentTabsView);
+
+    /* Collections */
     var categoryCollection = new CategoryCollection();
     categoryCollection.fetch();
 
     var coordCollection = new CoordCollection();
 
+    /* Views */
     var categoryListView = new CategoryListView({
       collection: categoryCollection
     });
@@ -83,18 +93,12 @@ function(
       collection: coordCollection
     });
 
-    /* Tabs */
-    var sidebarTabsView = new SidebarTabsView();
-    var contentTabsView = new ContentTabsView();
-
-    /* Pane for tabs */
     app.categoryPane.show(categoryListView);
     app.searchPane.show(searchView);
     app.mapPane.show(mapView);
     app.tablePane.show(coordTableView);
 
-    app.sidebarTabs.show(sidebarTabsView);
-    app.contentTabs.show(contentTabsView);
+    /* Events */
 
     categoryListView.on('childview:category:clicked', function(args) {
       coordTableView.collection.reset(args.model.items.models);
@@ -105,13 +109,19 @@ function(
       // Hack: Because we have only two tabs
       args.view.$el.find('li').toggleClass('active');
       $('#category-pane, #search-pane').toggle();
+      // For resize panel height
+      categoryListView.triggerMethod('show');
+      searchView.triggerMethod('show');
     });
 
-    contentTabsView.on('sidebar-tabs:clicked', function(args) {
+    contentTabsView.on('content-tabs:clicked', function(args) {
       console.log('Category click');
       // Hack: Because we have only two tabs
       args.view.$el.find('li').toggleClass('active');
       $('#map-pane, #table-pane').toggle();
+      // For resize panel height
+      mapView.triggerMethod('show');
+      coordTableView.triggerMethod('show');
     });
 
     Backbone.history.start();

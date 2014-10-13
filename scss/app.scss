@@ -3,186 +3,186 @@
 @import "mixins";
 
 #app {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  display: table;
-  position: fixed;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-  #wrap {
-    display: table-row;
-    overflow: hidden;
+#sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $sidebar-width;
+  border-right: 1px solid #000;
+  padding-left: 10px;
+  padding-right: 10px;
 
-    #sidebar {
-      display: table-cell;
-      vertical-align: top;
-      width: $sidebar-width;
-      border-right: 1px solid #000;
-      padding-bottom: 1000em;
-      margin-bottom: -1000em;
-      padding-left: 10px;
-      padding-right: 10px;
+  & > h1 {}
 
-      > h1 {}
+  & > .wrapper {
+    height: auto !important;
+    padding-bottom: 10px;
+  }
+}
 
-      #category-pane {
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        margin-bottom: -10000px;
-        padding-bottom: 10000px;
-        > ul {
-          padding-top: 10px;
-        }
-      }
+#sidebar-tabs {
+  padding-top: 10px;
+}
 
-      > .footer {
-        width: 300px;
-      }
+#category-pane {
+  overflow-y: scroll;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
 
-      #search-pane {
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        margin-bottom: -10000px;
-        padding-bottom: 10000px;
-        display: none;
+  & > ul {
+    padding-top: 10px;
+  }
+}
 
-        label:before {
-          content: '\1f50d';
-          font-family: 'Segoe UI Symbol';
-          display: block;
-          padding: 0;
-          margin: 0;
-          position: relative;
-          top: 22px;
-          left: 15px;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
+#search-pane {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
+  display: none;
 
-        input[type="text"] {
-          margin-left: 10px;
-          margin-right: 10px;
-          padding-left: 18px;
-          padding-right: 7px;
-          padding-top: 3px;
-          padding-bottom: 3px;
-          border-radius: 11px;
-          border: 1px solid #000;
-          display: block;
-          -webkit-font-smoothing: antialiased;
+  label:before {
+    content: '\1f50d';
+    font-family: 'Segoe UI Symbol';
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 22px;
+    left: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-          &:focus {
-            border: 1px solid #000;
-            outline: 0;
-          }
-        }
+  input[type="text"] {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 18px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 11px;
+    border: 1px solid #000;
+    display: block;
+    -webkit-font-smoothing: antialiased;
 
-        h3 {
-          margin-left: 10px;
-          margin-right: 10px;
-        }
-
-        ul#result {
-          list-style: none;
-
-          > li {
-            margin-left: 10px;
-            margin-right: 10px;
-          }
-        }
-      }
+    &:focus {
+      border: 1px solid #000;
+      outline: 0;
     }
+  }
 
-    #main {
-      display: table-cell;
-      vertical-align: top;
-      padding-left: 10px;
-      padding-right: 10px;
+  h3 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
-      #content {
-        padding-left: 10px;
-        padding-right: 10px;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        padding-bottom: 1000em;
-        margin-bottom: -1000em;
+  ul#result {
+    list-style: none;
 
-        #map-pane {
-        }
-
-        #table-pane {
-          display: none;
-
-          .panel {
-            float: right;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            > a {
-              float: right;
-              padding-left: 10px;
-            }
-          }
-
-          .coord-table {
-            width: 100%;
-            border: 1px solid #aaa;
-            & thead {
-              & tr {
-                & th {
-                  background-color: #ddd;
-                  text-align: left;
-                  border-right: 1px solid #777;
-                  padding-left: 10px;
-                }
-              }
-            }
-
-            & tbody {
-              & tr {
-                &:nth-child(odd) {
-                  background-color: #eee;
-                }
-
-                & td {
-                  text-align: left;
-                  border-right: 1px solid #777;
-                  padding-left: 10px;
-                }
-              }
-            }
-          }
-        }
-
-        > .paginator {
-          position: fixed;
-          bottom: 20px;
-        }
-      }
-
-      > .footer {
-        width: 100%; // Need hack
-      }
+    & > li {
+      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 }
 
-/* Hacks */
+#content {
+  position: absolute;
+  top: 0;
+  left: $sidebar-width + 20px;
+  bottom: 0;
+  right: 0;
+  padding-left: 10px;
+  padding-right: 10px;
 
-.footer {
-  position: fixed;
-  bottom: 0px;
-  background-color: #fff;
-  height: 10px;
-  border-top: 1px solid #000;
+  & > .wrapper {
+    height: auto !important;
+    padding-bottom: 10px;
+  }
 }
 
-.hack {
-  position: absolute;
-  width: 10px;
-  right: 0;
-  bottom: 0;
-  background-color: #fff;
-  height: 11px;
+#content-tabs {
+  padding-top: 10px;
+}
+
+#map-pane {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#table-pane {
+  display: none;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px;
+
+  & .panel {
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    > a {
+      float: right;
+      padding-left: 10px;
+    }
+  }
+
+  & .coord-table {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    & > thead {
+      & > tr {
+        & > th {
+          background-color: #ddd;
+          text-align: left;
+          border-right: 1px solid #777;
+          padding-left: 10px;
+        }
+      }
+    }
+
+    & > tbody {
+      & > tr {
+        &:nth-child(odd) {
+          background-color: #eee;
+        }
+
+        & > td {
+          text-align: left;
+          border-right: 1px solid #777;
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+
+  & .paginator {
+    position: fixed;
+    bottom: 20px;
+  }
 }
 
 /* Components */
@@ -190,9 +190,7 @@
 ul.nav-tabs {
   @include clearfix;
   list-style: none;
-  @include clearfix;
   margin-bottom: 0;
-  padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
   border-bottom: 1px solid black;
@@ -238,7 +236,7 @@ ul.paginator {
   @include clearfix;
   list-style: none;
 
-  li {
+  & > li {
     float: left;
     display: block;
     border: 1px solid #000;
@@ -257,7 +255,7 @@ ul.category-list {
   list-style: none;
   user-select: none;
 
-  > li.category-item {
+  & > li.category-item {
     cursor: pointer;
 
     &:before {
@@ -288,7 +286,7 @@ ul.category-list {
     }
   }
 
-  .coord-list {
+  & > .coord-list {
     padding-left: 15px;
     list-style: none;
   }
