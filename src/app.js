@@ -36,6 +36,9 @@ requirejs([
   'views/coordtable',
   'views/tabs-sidebar',
   'views/tabs-content',
+  'views/dialog',
+  'views/dialog-newcategory',
+  'views/dialog-newcoord'
 ],
 function(
   Backbone,
@@ -47,7 +50,10 @@ function(
   MapView,
   CoordTableView,
   SidebarTabsView,
-  ContentTabsView
+  ContentTabsView,
+  Dialog,
+  NewCategoryDialog,
+  NewCoordDialog
 ) {
 
   app = new Application({container: '#app'});
@@ -58,7 +64,8 @@ function(
     categoryPane: '#category-pane',
     searchPane: '#search-pane',
     mapPane: '#map-pane',
-    tablePane: '#table-pane'
+    tablePane: '#table-pane',
+    modal: '#modal'
   });
 
   app.addInitializer(function() {
@@ -106,6 +113,8 @@ function(
       coordTableView.collection.reset(args.model.items.models);
     });
 
+    /* Events for tabs */
+
     sidebarTabsView.on('sidebar-tabs:clicked', function(args) {
       console.log('Category click');
       // Hack: Because we have only two tabs
@@ -124,6 +133,18 @@ function(
       // For resize panel height
       mapView.triggerMethod('show');
       coordTableView.triggerMethod('show');
+    });
+
+    /* Events for table */
+
+    coordTableView.on('show:dialog:newcategory', function(args) {
+      var dialog = new NewCategoryDialog({collection: categoryCollection});
+      app.modal.show(dialog);
+    });
+
+    coordTableView.on('show:dialog:newcoord', function(args) {
+      var dialog = new NewCoordDialog();
+      app.modal.show(dialog);
     });
 
     Backbone.history.start();

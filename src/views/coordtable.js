@@ -1,10 +1,11 @@
 define([
   'marionette',
   'views/coordrow',
+  'views/dialog',
   'behaviors/fillable',
   'text!templates/coordtable.html'
 ],
-function(Marionette, CoordRowView, Fillable, template) {
+function(Marionette, CoordRowView, Dialog, Fillable, template) {
 
   return Marionette.CompositeView.extend({
 
@@ -15,9 +16,14 @@ function(Marionette, CoordRowView, Fillable, template) {
       }
     },
 
+    triggers: {
+      'click .new-category': 'show:dialog:newcategory',
+      'click .new-coord': 'show:dialog:newcoord'
+    },
+
     template: _.template(template),
     childView: CoordRowView,
-    childViewContainer: 'tbody',
+    childViewContainer: 'tbody'
   });
 
 });

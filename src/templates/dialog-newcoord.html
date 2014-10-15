@@ -1,0 +1,28 @@
+<div class="shadow">
+</div>
+<div class="dialog">
+    <div class="dialog-content">
+        <div class="dialog-header">
+            <h4 class="dialog-title">Создать место</h4>
+            <span class="close-button">&times;</span>
+        </div>
+        <div class="dialog-body">
+            <p>Название места</p>
+            <input type="text" name="name" value="<%= name %>"/>.
+            <p>Адрес</p>
+            <input type="text" name="address" value="<%= address %>"/>
+            <p>Широта</p>
+            <input type="text" name="lon" value="<%= lon %>"/>
+            <p>Долгота</p>
+            <input type="text" name="lat" value="<%= lat %>"/>
+            <p>Категория</p>
+            <input type="text" name="lat" value="<%= category %>"/>
+            <div id="small-map">
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="cancel-button">Отмена</button>
+            <button class="submit-button">Создать</button>
+        </div>
+    </div>
+</div>

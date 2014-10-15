@@ -311,18 +311,25 @@ div.shadow {
 }
 
 div.dialog {
-  position: relative;
+  position: fixed;
   background-clip: padding-box;
-  background-color: #fff;
   outline: 0;
-  z-index: 2000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3000;
   width: 400px;
   margin: 50px auto;
 
   & > div.dialog-content {
     border: 1px solid #000;
+    background-color: #fff;
     position: relative;
     outline: 0;
+    width: auto;
+    margin: 10px;
+
 
     & > div.dialog-header {
       min-height: 20px;
@@ -333,11 +340,16 @@ div.dialog {
         float: left;
       }
 
-      & > span.close {
+      & > span.close-button {
         float: right;
         font-size: 21px;
         font-weight: 700;
         line-height: 1;
+        cursor: pointer;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: #eee;
+        border-radius: 3px;
         @include clearfix;
       }
     }
@@ -345,6 +357,13 @@ div.dialog {
     & > div.dialog-body {
       position: relative;
       padding: 10px;
+    }
+
+    & > div.buttons {
+      padding: 10px;
+      border-top: 1px solid #eee;
+      text-align: right;
+      @include clearfix();
     }
   }
 }

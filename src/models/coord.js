@@ -1,4 +1,8 @@
-define(['backbone'], function(Backbone) {
+define([
+  'backbone',
+  'models/category'
+],
+function(Backbone) {
 
   return Backbone.Model.extend({
     defaults: function() {
@@ -6,7 +10,8 @@ define(['backbone'], function(Backbone) {
         name: 'Name of object',
         address: 'Address',
         lon: 0,
-        lat: 0
+        lat: 0,
+        category: 0
       };
     }
   });
