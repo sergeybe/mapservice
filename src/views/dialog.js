@@ -7,6 +7,7 @@ function(Marionette, template) {
   return Marionette.ItemView.extend({
     template: _.template(template),
 
+    // TODO: move it to initialize method. No extend here!
     ui: {
       'closeButton': '.close-button',
       'cancelButton': '.cancel-button',
@@ -30,7 +31,7 @@ function(Marionette, template) {
     },
 
     serializeFormData: function() {
-      var items = this.$('input[name]').serializeArray();
+      var items = this.$('input[name],select[name]').serializeArray();
       var data = {};
       _.each(items, function(item) {
         data[item.name] = item.value;
@@ -39,7 +40,7 @@ function(Marionette, template) {
     },
 
     onShow: function() {
-      this.$el.find('*:input[type!=hidden]:first').focus();
+      this.$el.find(':input:enabled:visible:first').focus();
     }
 
   });

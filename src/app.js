@@ -143,7 +143,7 @@ function(
     });
 
     coordTableView.on('show:dialog:newcoord', function(args) {
-      var dialog = new NewCoordDialog();
+      var dialog = new NewCoordDialog({collection: categoryCollection});
       app.modal.show(dialog);
     });
 

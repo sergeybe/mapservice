@@ -8,7 +8,7 @@
         </div>
         <div class="dialog-body">
             <p>Название места</p>
-            <input type="text" name="name" value="<%= name %>"/>.
+            <input type="text" name="name" value="<%= name %>"/>
             <p>Адрес</p>
             <input type="text" name="address" value="<%= address %>"/>
             <p>Широта</p>
@@ -16,13 +16,14 @@
             <p>Долгота</p>
             <input type="text" name="lat" value="<%= lat %>"/>
             <p>Категория</p>
-            <input type="text" name="lat" value="<%= category %>"/>
+            <select name="category">
+            </select>
             <div id="small-map">
             </div>
         </div>
         <div class="buttons">
             <button class="cancel-button">Отмена</button>
-            <button class="submit-button">Создать</button>
+            <button type="submit" class="submit-button">Создать</button>
         </div>
     </div>
 </div>

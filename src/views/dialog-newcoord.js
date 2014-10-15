@@ -12,7 +12,19 @@ function(CoordModel, Dialog, template) {
       this.model = new CoordModel();
     },
 
-    onSubmit: function() {
+    onRender: function() {
+      var category = this.$el.find('select[name=category]');
+
+      this.collection.each(function(item) {
+        category.append(
+          $('<option></option>').text(item.get('name'))
+        );
+      });
+    },
+
+    onSubmit: function(data) {
+      var category = this.collection.findWhere({name: data.category});
+      category.items.add(data);
       this.destroy();
     }
   });

@@ -11,7 +11,7 @@ function(Backbone) {
         address: 'Address',
         lon: 0,
         lat: 0,
-        category: 0
+        category: ''
       };
     }
   });
