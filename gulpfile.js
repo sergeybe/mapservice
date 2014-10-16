@@ -11,7 +11,7 @@ var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var gutil = require('gulp-util');
 var rjs = require('requirejs');
-var karma = require('gulp-karma');
+var karma = require('karma').server;
 
 var swallowError = function(error) {
   console.log(error.toString());
@@ -122,16 +122,11 @@ gulp.task('watch', function() {
 
 /* Tests */
 
-gulp.task('test', ['build'], function() {
-  return gulp.src(['undefined.js'])
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      console.log(err);
-      throw err;
-    });
+gulp.task('test', function(done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
 });
 
 gulp.task('default', ['build', 'watch', 'server']);

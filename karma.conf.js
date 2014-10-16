@@ -10,19 +10,24 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['qunit', 'requirejs'],
+    frameworks: ['mocha', 'requirejs', 'chai'],
 
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/sinon/pkg/sinon.js',
+      'node_modules/chai/chai.js',
       'test-main.js',
-      {pattern: 'tests/*.spec.js', included: false}
+      {pattern: 'src/tests/**/*.spec.js', included: false},
+      {pattern: 'bower_components/**/*.js', included: false},
+      {pattern: 'src/**/*.js', included: false}
     ],
 
 
     // list of files to exclude
     exclude: [
-      '**/*.swp'
+      '**/*.swp',
+      'bower_components/**/*.spec.js'
     ],
 
 

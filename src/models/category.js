@@ -9,7 +9,6 @@ define(['backbone', 'collections/coord'], function(Backbone, CoordCollection) {
     },
 
     initialize: function() {
-      console.log('init CategoryModel');
       var items = this.get('items');
       if (items) {
         // It must be collection!

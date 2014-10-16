@@ -12,6 +12,5 @@
     "marionette": "~2.2.1"
   },
   "devDependencies": {
-    "qunit": "~1.15.0"
   }
 }
