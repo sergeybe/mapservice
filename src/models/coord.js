@@ -13,6 +13,14 @@ function(Backbone) {
         lat: 0,
         category: ''
       };
+    },
+
+    getLatLon: function() {
+      return [this.get('lat'), this.get('lon')];
+    },
+
+    getLonLat: function() {
+      return [this.get('lon'), this.get('lat')];
     }
   });
 

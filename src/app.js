@@ -111,6 +111,7 @@ function(
 
     categoryListView.on('childview:category:clicked', function(args) {
       coordTableView.collection.reset(args.model.items.models);
+      mapView.collection.reset(args.model.items.models);
     });
 
     /* Events for tabs */
