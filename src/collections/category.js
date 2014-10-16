@@ -4,10 +4,6 @@ define(['backbone', 'models/category'], function(Backbone, CategoryModel) {
     model: CategoryModel,
     url: '/tests/data.json',
 
-    initialize: function() {
-      console.log('init CategoryCollection');
-    },
-
     getCoordLikes: function(str) {
       var tmp = [];
       if (str) {

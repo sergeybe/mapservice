@@ -12,5 +12,7 @@
     "marionette": "~2.2.1"
   },
   "devDependencies": {
+    "mocha": "~1.21.5",
+    "chai": "~1.9.2"
   }
 }
