@@ -39,29 +39,33 @@ function(chai, CategoryCollection, CategoryModel, CoordModel) {
     cat3.items.add(place8);
 
     it('should length eq 3', function() {
-      expect(collection.length).to.be.equal(3);
+      expect(collection).to.have.length(3);
     });
 
     describe('#getCoordLikes', function() {
 
-      it('should to be length 8 for "p"', function() {
-        expect(collection.getCoordLikes('p').length).to.equal(8);
+      it('should to have length 8 for "p"', function() {
+        expect(collection.getCoordLikes('p')).to.have.length(8);
       });
 
-      it('should to be length 1 for "7"', function() {
-        expect(collection.getCoordLikes('7').length).to.equal(1);
+      it('should to have length 1 for "7"', function() {
+        expect(collection.getCoordLikes('7')).to.have.length(1);
       });
 
-      it('should to be length 0 for "z"', function() {
-        expect(collection.getCoordLikes('z').length).to.equal(0);
+      it('should to have length 0 for "z"', function() {
+        expect(collection.getCoordLikes('z')).to.have.length(0);
       });
 
-      it('should to be length 3 for "x"', function() {
-        expect(collection.getCoordLikes('x').length).to.equal(3);
+      it('should to have length 3 for "x"', function() {
+        expect(collection.getCoordLikes('x')).to.have.length(3);
       });
 
-      it('should to be length 7 for "place"', function() {
-        expect(collection.getCoordLikes('place').length).to.equal(7);
+      it('should to have length 7 for "place"', function() {
+        expect(collection.getCoordLikes('place')).to.have.length(7);
+      });
+
+      it('should at 1 to have getMarkers function', function() {
+        expect(collection.at(1).items).itself.to.respondTo('getMarkers');
       });
 
     });
